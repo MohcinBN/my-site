@@ -38,4 +38,39 @@ class BackendController extends Controller
         }
 
     }
+    public function edit($id)
+    {
+       $post = Post::where('id', $id)->first();
+       //dd($post);
+       return view('backend.edit', compact('post'));
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            $post = Post::FindOrFail($id);
+            $post->title = $request->title;
+            $post->slug = Str::slug($request->title);
+            $post->body = trim($request->body);
+
+            //dd($post);
+     
+            $post->update();
+     
+            return redirect('backend/home')->with('status', 'Post updated!');
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+        
+    }
+    public function destroy(Post $post, $id)
+    {
+        try {
+            $post = Post::FindOrFail($id);
+            $post->delete();
+     
+            return redirect('backend/home')->with('status', 'Post deleted!');
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+    }
 }

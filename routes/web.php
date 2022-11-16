@@ -23,13 +23,18 @@ Auth::routes(['register' => false]);
 Route::get('/backend/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/posts', [PostController::class, 'index']);
-Route::get('posts/{post}', [PostController::class, 'show']);
+Route::get('posts/{slug}', [PostController::class, 'show']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('backend/home', [BackendController::class, 'index']);
     Route::get('backend/posts/create', [BackendController::class, 'create']);
     Route::post('backend/posts/store', [BackendController::class, 'store'])->name('post.store');
+    Route::delete('backend/{id}/delete', [BackendController::class, 'destroy'])->name('post.destroy');
+    Route::get('backend/edit/{id}', [BackendController::class, 'edit'])->name('post.edit');
+    Route::put('backend/{id}', [BackendController::class, 'update'])->name('post.update');
 });
+
+// pages routes
 
 
 

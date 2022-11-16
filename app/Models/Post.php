@@ -19,7 +19,7 @@ class Post extends Model
     // url generation
     public function url()
     {
-        return url('posts/' . $this->id);
+        return url('posts/' . $this->slug);
     }
 
     // post excerpt
@@ -50,6 +50,13 @@ class Post extends Model
 
         return $minutes;
     }
+
+    // slug instead of id in the URL 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 
 
 }

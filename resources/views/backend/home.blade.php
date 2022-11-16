@@ -34,7 +34,17 @@
                   <tr>
                     <th scope="row">{{ $post->id }}</th>
                     <td colspan="2">{{ $post->title }}</td>
-                    <td>Edit | Delete</td>
+                    <td class="d-flex">
+                      
+                      <a href="{{ route('post.edit', $post->id) }}" class="btn btn-success mr-3">Edit</a>
+                      
+                      <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

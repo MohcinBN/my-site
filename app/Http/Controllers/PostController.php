@@ -14,8 +14,8 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show(Post $slug)
     {
-        return view('posts.show', ['post' => $post]);
+        return view('posts.show', ['post' => $slug]);
     }
 }
