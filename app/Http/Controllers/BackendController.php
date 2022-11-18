@@ -73,4 +73,15 @@ class BackendController extends Controller
             throw $e;
         }
     }
+
+    // post status
+    public function isPublished(Request $request)
+    {
+        $changeStatus = Post::FindOrFail($request->id);
+        $changeStatus->status = $request->status;
+
+        $changeStatus->save();
+
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }
