@@ -50,15 +50,12 @@ class PostControllerTest extends TestCase
 
     }
 
-    public function test_if_status_changed_or_not()
+    public function test_if_status_updated()
     {
-        $post = PostFactory::new()->create();
-
+        $post = PostFactory::new()->create(['status' => false]);
         $response = $this->put('/backend/update-status/' . $post->id);
-
-
-        $response->assertOk(200);
-
-
+        $response->assertStatus(302);
+        $this->assertFalse(!! $post->fresh()->status);
     }
+
 }

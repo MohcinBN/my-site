@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('backend/{id}', [BackendController::class, 'update'])->name('post.update');
 
     // change status
-    Route::put('backend/update-status/{id}', [BackendController::class, 'isPibished'])->name('post.status');
+    Route::put('backend/update-status/{id}', [BackendController::class, 'isPublished'])->name('post.status');
 });
 
 // pages routes
