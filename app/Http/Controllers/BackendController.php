@@ -74,14 +74,10 @@ class BackendController extends Controller
         }
     }
 
-    // post status
-    public function isPublished(Request $request)
+    public function isPibished($id)
     {
-        $changeStatus = Post::FindOrFail($request->id);
-        $changeStatus->status = $request->status;
+      $changeStatus = Post::FindOrFail($id);
 
-        $changeStatus->save();
-
-        return response()->json(['success'=>'Status change successfully.']);
+      dd($changeStatus);
     }
 }

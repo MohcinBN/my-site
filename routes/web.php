@@ -18,7 +18,7 @@ use App\Http\Controllers\BackendController;
 
 Route::get('/', [PostController::class, 'index']);
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::get('/backend/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('backend/{id}/delete', [BackendController::class, 'destroy'])->name('post.destroy');
     Route::get('backend/edit/{id}', [BackendController::class, 'edit'])->name('post.edit');
     Route::put('backend/{id}', [BackendController::class, 'update'])->name('post.update');
+
+    // change status
+    Route::put('backend/update-status/{id}', [BackendController::class, 'isPibished'])->name('post.status');
 });
 
 // pages routes

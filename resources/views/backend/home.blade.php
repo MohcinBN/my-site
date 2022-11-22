@@ -44,6 +44,13 @@
 
                       <button type="submit" class="btn btn-danger">Delete</button>
                       </form>
+
+                      <form action="{{ route('post.status', $post->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+
+                        <button type="submit" class="btn btn-success">Change Status</button>
+                      </form>
                     </td>
                   </tr>
                   @endforeach

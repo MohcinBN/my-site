@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controller;
 
+use App\Models\Post;
 use Database\Factories\PostFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -10,7 +11,7 @@ use Tests\TestCase;
 
 class PostControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     public function test_if_it_loads_posts_index()
     {
@@ -45,6 +46,18 @@ class PostControllerTest extends TestCase
         $response->assertOk();
         $response->assertSee($post->title);
         $response->assertSee($post->body);
+
+
+    }
+
+    public function test_if_status_changed_or_not()
+    {
+        $post = PostFactory::new()->create();
+
+        $response = $this->put('/backend/update-status/' . $post->id);
+
+
+        $response->assertOk(200);
 
 
     }

@@ -20,6 +20,7 @@ class PostFactory extends Factory
            'slug' => $this->faker->sentence(),
            'title' => $this->faker->sentence(),
            'body' => $this->faker->paragraph(),
+           'status' => $this->faker->numberBetween(0,1)
         ];
     }
 }
