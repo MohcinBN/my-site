@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(): object
     {
         return view('welcome', [
-            'posts' => Post::where('status', 1)->orderByRaw('updated_at - created_at ASC')->simplePaginate(5)
+            'posts' => Post::where('status', 1)->orderByRaw('(created_at) DESC')->simplePaginate(5)
         ]);
     }
 

@@ -13,7 +13,7 @@ class BackendController extends Controller
     public function index()
     {
        return view('backend.home', [
-            'posts' => Post::simplePaginate(5)
+            'posts' => Post::where('status', 1)->orderByRaw('(created_at) DESC')->simplePaginate(5)
        ]);
     }
 
@@ -29,9 +29,19 @@ class BackendController extends Controller
             $post->title = $request->title;
             $post->slug = Str::slug($request->title);
             $post->body = trim($request->body);
-     
+
+            // post image upload.
+            $image_request = $request->image;
+            $image_name = time() . '.' . $image_request->extension();
+
+            // Store it in the public Folder
+            $image_request->move(public_path('images'), $image_name);
+
+            $post->image = $image_name;
+
+
             $post->save();
-     
+
             return redirect('backend/home')->with('status', 'Post added!');
         } catch (\Throwable $e) {
             throw $e;
@@ -53,21 +63,21 @@ class BackendController extends Controller
             $post->body = trim($request->body);
 
             //dd($post);
-     
+
             $post->update();
-     
+
             return redirect('backend/home')->with('status', 'Post updated!');
         } catch (\Throwable $e) {
             throw $e;
         }
-        
+
     }
     public function destroy(Post $post, $id)
     {
         try {
             $post = Post::FindOrFail($id);
             $post->delete();
-     
+
             return redirect('backend/home')->with('status', 'Post deleted!');
         } catch (\Throwable $e) {
             throw $e;

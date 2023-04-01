@@ -10,10 +10,10 @@
                 {{ session('status') }}
             </div>
             @endif
-    
+
             @if ($errors->any())
             <div class="alert alert-danger">
-                <strong>Check Those Errors!</strong> 
+                <strong>Check Those Errors!</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -21,13 +21,17 @@
                 </ul>
             </div>
             @endif
-           
+
             <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="mb-3">
                     <label for="title" class="form-label fs-5">Post Title</label>
                     <input type="text" class="form-control" name="title" id="title" placeholder="enter post title" value="{{ $post->title }}">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label fs-5">Post Image</label>
+                    <input class="form-control" type="file" id="image" name="image">
                 </div>
                 <input value=".." type="text" class="form-control" name="slug" id="slug" placeholder="enter post title" hidden>
                 <div class="mb-3">
@@ -39,7 +43,7 @@
 
                 <button type="submit" class="mt-3 btn btn-success">Update Post</button>
             </form>
-              
+
         </div>
     </div>
 </div>

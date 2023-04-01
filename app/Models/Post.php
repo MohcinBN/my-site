@@ -28,30 +28,13 @@ class Post extends Model
         return Str::limit($this->body, $limit);
     }
 
-    // post time creation 
+    // post time creation
     public function createdAt()
     {
         return $this->created_at->toDateString();
     }
 
-    // reading time
-    //The average reader reads about 200 words per minute, so I decided to have less to make estimates more accurate 
-    public function postReadingTimeEstimation($averageReadsPerMunite = 180)
-    {
-        $textOfTheBody = $this->body;
-        $totalWords = str_word_count(strip_tags($textOfTheBody));
-
-        $minutes = floor($totalWords / $averageReadsPerMunite);
-        $seconds = floor($totalWords % $averageReadsPerMunite / ($averageReadsPerMunite / 60));
-
-        if ($seconds < 60) {
-            $minutes = 1 . ' minutes';
-        }
-
-        return $minutes;
-    }
-
-    // slug instead of id in the URL 
+    // slug instead of id in the URL
     public function getRouteKeyName()
     {
         return 'slug';
