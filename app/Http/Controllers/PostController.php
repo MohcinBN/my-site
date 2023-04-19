@@ -18,4 +18,8 @@ class PostController extends Controller
     {
         return view('posts.show', ['post' => $slug]);
     }
+
+    public function search(){
+
+    }
 }
