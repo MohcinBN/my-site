@@ -16,6 +16,11 @@
                 @include('layouts.nav')
                 {{-- articles --}}
                 <div class="col-md-9 mt-4">
+                    <div class="col-md-6 my-4 offset-6">
+                        <form action="{{ route('search') }}" method="GET">
+                            <input type="search" name="search" id="search" class="form-control" placeholder="search site..">
+                        </form>
+                    </div>
                     @foreach ($posts as $post)
                     <article>
                         <header>

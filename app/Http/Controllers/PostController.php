@@ -19,7 +19,17 @@ class PostController extends Controller
         return view('posts.show', ['post' => $slug]);
     }
 
-    public function search(){
+    public function search_posts(Request $request)
+    {
+        $query = $request->search;
+        $like = 'LIKE';
 
+        $posts = Post::where('title', $like, "%$query%")
+            ->orWhere('body', $like, "%$query%")
+            ->paginate(20);
+
+        //dd($posts);
+
+        return view('posts.search', compact('posts', 'query'));
     }
 }

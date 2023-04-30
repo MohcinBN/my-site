@@ -24,6 +24,7 @@ Route::get('/backend/home', [App\Http\Controllers\HomeController::class, 'index'
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('posts/{slug}', [PostController::class, 'show']);
+Route::get('/query', [PostController::class, 'search_posts'])->name('search');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('backend/home', [BackendController::class, 'index']);
@@ -38,6 +39,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // pages routes
-
-
-
