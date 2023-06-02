@@ -16,6 +16,11 @@
                 @include('layouts.nav')
                 {{-- articles --}}
                 <div class="col-md-9 mt-4">
+                    <div class="col-md-6 my-4 offset-6">
+                        <form action="{{ route('search') }}" method="GET">
+                            <input type="search" name="search" id="search" class="form-control" placeholder="search site..">
+                        </form>
+                    </div>
                     @foreach ($posts as $post)
                     <article>
                         <header>
@@ -24,7 +29,7 @@
                             </h2>
                             <div class="d-flex justify-content-between">
                                 <p class="sub-title">Published at <span>{{ $post->createdAt() }}</span> </p>
-                                <p class="sub-title">Reading time: <span>{{ post_reading_time_estimation($post) }}</span> </p>
+                                <p class="sub-title"><span>{{ post_reading_time_estimation($post) }} read</span> </p>
                             </div>
                             <div class="entry-text">
                                 {{$post->postExcerpt()}}
