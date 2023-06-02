@@ -12,7 +12,7 @@ on:
 jobs:
   create-deployment-artifacts:
 
-    name: Create deployment artifacts
+    name: Create deployment process
 
     runs-on: ubuntu-latest
 
@@ -35,3 +35,6 @@ jobs:
       - name: Composer install
         run: |
           composer install --no-dev --no-interaction --prefer-dist
+
+      - name: Create deployment tool
+        run: tar -czf app.tar.gz *
