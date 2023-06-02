@@ -4,6 +4,7 @@ use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\StaticPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // pages routes
+Route::get('/about', [StaticPageController::class, 'aboutPage'])->name('page.about');
