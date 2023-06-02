@@ -16,6 +16,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    outputs: 
+
+      DEPLOYMENT_MATRIX: ${{ steps.export-deployment-matrix.outputs.DEPLOYMENT_MATRIX }}
+
     steps:
       - uses: actions/checkout@v3
 
@@ -46,3 +50,11 @@ jobs:
         with:
           name: app-build
           path: ${{ github.sha }}.tar.gz
+      - name: Export deployment matrix
+        id: export-deployment-matrix
+        run: |
+              delimiter="$(openssl rand -hex 8)"
+              JSON="$(cat ./deployement-config.json)"
+              echo "DEPLOYMENT_MATRIX<<${delimiter}" >> "${GITHUB_OUTPUT}"
+              echo "$JSON" >> "${GITHUB_OUTPUT}"
+              echo "${delimiter}" >> "${GITHUB_OUTPUT}"

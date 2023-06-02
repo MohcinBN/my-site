@@ -1,0 +1,12 @@
+[
+    {
+      "name": "MohcinBounouara.vps.local",
+      "ip": "31.220.53.17",
+      "username": "root",
+      "password": "Mo070153391&&",
+      "port": "22",
+      "beforeHooks": "",
+      "afterHooks": "",
+      "path": "/var/www/html"
+    }
+  ]
