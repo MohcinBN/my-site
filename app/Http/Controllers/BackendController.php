@@ -35,9 +35,9 @@ class BackendController extends Controller
             $image_name = time() . '.' . $image_request->extension();
 
             // Store it in the public Folder
-            $image_request->move(public_path('images'), $image_name);
+            $image_request->move(public_path('images'), $image_name);*/
 
-            $post->image = $image_name;*/
+            $post->image = 'image';
 
 
             $post->save();
