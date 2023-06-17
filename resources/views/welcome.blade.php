@@ -28,8 +28,8 @@
                                 <a href="{{ $post->url() }}" class="fw-bold text-decoration-none text-black fs-3">{{$post->title}}</a>
                             </h2>
                             <div class="d-flex justify-content-between">
-                                <p class="sub-title">Published at <span>{{ $post->createdAt() }}</span> </p>
-                                <p>{{ post_reading_time_estimation($post) }}</p>
+                                <p class="sub-title">published at <span>{{ $post->createdAt() }}</span> </p>
+                                <p>reading time: {{ post_reading_time_estimation($post) }}</p>
                                 
                             </div>
                             <div class="entry-text">
