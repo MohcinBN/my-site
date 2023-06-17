@@ -29,8 +29,8 @@
                             </h2>
                             <div class="d-flex justify-content-between">
                                 <p class="sub-title">Published at <span>{{ $post->createdAt() }}</span> </p>
-                                <!--<p class="sub-title"><span>{{ post_reading_time_estimation($post) }} read</span> </p>-->
-                                
+                                <!--<p class="sub-title"><span>{{ //post_reading_time_estimation($post) }} read</span> </p>-->
+
                             </div>
                             <div class="entry-text">
                                 {{$post->postExcerpt()}}
