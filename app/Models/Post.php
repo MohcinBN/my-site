@@ -19,11 +19,12 @@ class Post extends Model
     // url generation
     public function url()
     {
-        return url('posts/' . $this->slug);
+        return url('posts/' . Str::slug($this->slug));
     }
 
     // post excerpt
-    public function postExcerpt() {
+    public function postExcerpt()
+    {
         $limit = 100;
         return Str::limit($this->body, $limit);
     }
@@ -39,7 +40,4 @@ class Post extends Model
     {
         return 'slug';
     }
-
-
-
 }
