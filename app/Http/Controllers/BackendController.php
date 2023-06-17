@@ -12,9 +12,9 @@ class BackendController extends Controller
     // list of posts
     public function index()
     {
-       return view('backend.home', [
+        return view('backend.home', [
             'posts' => Post::where('status', 1)->orderByRaw('(created_at) DESC')->simplePaginate(5)
-       ]);
+        ]);
     }
 
 
@@ -31,13 +31,13 @@ class BackendController extends Controller
             $post->body = trim($request->body);
 
             // post image upload.
-            $image_request = $request->image;
+            /*$image_request = $request->image;
             $image_name = time() . '.' . $image_request->extension();
 
             // Store it in the public Folder
             $image_request->move(public_path('images'), $image_name);
 
-            $post->image = $image_name;
+            $post->image = $image_name;*/
 
 
             $post->save();
@@ -46,13 +46,12 @@ class BackendController extends Controller
         } catch (\Throwable $e) {
             throw $e;
         }
-
     }
     public function edit($id)
     {
-       $post = Post::where('id', $id)->first();
-       //dd($post);
-       return view('backend.edit', compact('post'));
+        $post = Post::where('id', $id)->first();
+        //dd($post);
+        return view('backend.edit', compact('post'));
     }
     public function update(Request $request, $id)
     {
@@ -70,7 +69,6 @@ class BackendController extends Controller
         } catch (\Throwable $e) {
             throw $e;
         }
-
     }
     public function destroy(Post $post, $id)
     {
@@ -91,7 +89,7 @@ class BackendController extends Controller
 
         if ($changeStatus->status == 1) {
             $changeStatus->status = 0;
-            } else {
+        } else {
             $changeStatus->status = 1;
         }
         //$changeStatus->status = $request->status;
