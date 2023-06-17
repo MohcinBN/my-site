@@ -42,7 +42,7 @@
                                 <img src="{{ asset('images/'. $post->image) }}" alt="{{$post->title}}" class="w-100">
                             </div>
                             <div class="entry-text mb-5">
-                                {{$post->body}}
+                                {!! $post->body !!}
                             </div>
                         </header>
                     </article>
