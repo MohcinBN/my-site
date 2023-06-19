@@ -27,3 +27,7 @@ header p {
 article span {
     color: blue;
 }
+
+.single-post p {
+    font-size: 0.9rem;
+}
