@@ -4,6 +4,16 @@
     font-family: 'Roboto', sans-serif;
 }
 
+p {
+    line-height: 2rem;
+    font-size: 1.10rem;
+}
+
+ul {
+    line-height: 2rem;
+    font-size: 1.10rem;
+}
+
 /* header part  */
 header p {
     color: gray;
