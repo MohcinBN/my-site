@@ -19,6 +19,7 @@
   gtag('config', 'G-KCBYVGJBPB');
 </script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
     <body class="bg-white">
@@ -28,9 +29,9 @@
                 @include('layouts.nav')
                 {{-- articles --}}
                 <div class="col-md-9 mt-4">
-                    <div class="col-md-6 my-4 offset-6">
+                    <div class="col-md-12 mb-5">
                         <form action="{{ route('search') }}" method="GET">
-                            <input type="search" name="search" id="search" class="form-control" placeholder="search site..">
+                            <input type="search" name="search" id="search" class="form-control rounded-0" placeholder="search site..">
                         </form>
                     </div>
                     @foreach ($posts as $post)
@@ -41,7 +42,7 @@
                             </h2>
                             <div class="d-flex justify-content-between single-post">
                                 <p class="sub-title">published at <span>{{ $post->createdAt() }}</span> </p>
-                                <p>reading time: {{ post_reading_time_estimation($post) }}</p>
+                                <p><i class="fas fa-clock"></i>  {{ post_reading_time_estimation($post) }}</p>
                                 
                             </div>
                             <div class="entry-text">

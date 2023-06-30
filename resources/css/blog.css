@@ -19,6 +19,12 @@ header p {
     color: gray;
 }
 
+article .single-post p:last-child {
+    background: #2525a2;
+    color: #fff;
+    padding: 1px 5px 1px 5px;
+}
+
 /* side navigation */
 #side-nav .item {
     color: #374151 !important;

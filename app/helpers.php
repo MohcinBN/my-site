@@ -14,7 +14,7 @@ function post_reading_time_estimation(Post $post, $averageReadsPerMunite = 180):
     $minutes = floor($totalWords / $averageReadsPerMunite);
 
     if ($minutes == 0) {
-        return  'less than 1 minute';
+        return  '1 minute';
     } else {
         return $minutes . ' minutes';
     }
