@@ -29,14 +29,14 @@ class PostResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('body')
+                Forms\Components\RichEditor::make('body')
                     ->required()
                     ->maxLength(65535),
                 Forms\Components\Toggle::make('status')
                     ->required(),
-                Forms\Components\TextInput::make('image')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\FileUpload::make('image')
+                    ->preserveFilenames()
+                    ->maxSize(1024),
             ]);
     }
 
