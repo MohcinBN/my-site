@@ -18,10 +18,6 @@ class Post extends Model
         'image'
     ];
 
-    protected $casts = [
-        'image' => 'array',
-    ];
-
     // url generation
     public function url()
     {
