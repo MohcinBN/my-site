@@ -12,11 +12,11 @@
                             </h2>
                             <div class="d-flex justify-content-between">
                                 <p class="sub-title">Published at <span>{{ $post->createdAt() }}</span> </p>
-                               
+
 
                             </div>
-                            <div class="post-image mt-2 mb-2 d-none">
-                                <img src="{{ asset('images/'. $post->image) }}" alt="{{$post->title}}" class="w-100">
+                            <div class="post-image mt-2 mb-2">
+                                <img src="{{asset('storage/' . $post->image)}}" alt="{{$post->title}}" class="w-100">
                             </div>
                             <div class="entry-text mb-5">
                                 {!! $post->body !!}

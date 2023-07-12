@@ -10,10 +10,12 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
+    protected $fillable = [
         'slug',
         'title',
-        'body'
+        'body',
+        'status',
+        'image'
     ];
 
     // url generation

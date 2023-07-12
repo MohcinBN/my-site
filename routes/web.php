@@ -19,7 +19,7 @@ use App\Http\Controllers\StaticPageController;
 
 Route::get('/', [PostController::class, 'index']);
 
-Auth::routes(['register' => false]); // disable registration action
+Auth::routes(['register' => false, 'login' => false]); // disable registration action
 
 Route::get('/backend/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -27,7 +27,7 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('posts/{slug}', [PostController::class, 'show']);
 Route::get('/query', [PostController::class, 'search_posts'])->name('search');
 
-Route::middleware(['auth'])->group(function () {
+/*Route::middleware(['auth'])->group(function () {
     Route::get('backend/home', [BackendController::class, 'index']);
     Route::get('backend/posts/create', [BackendController::class, 'create']);
     Route::post('backend/posts/store', [BackendController::class, 'store'])->name('post.store');
@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
 
     // change status
     Route::put('backend/update-status/{id}', [BackendController::class, 'isPublished'])->name('post.status');
-});
+});*/
 
 // pages routes
 Route::get('/about', [StaticPageController::class, 'aboutPage'])->name('page.about');
