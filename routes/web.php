@@ -19,7 +19,7 @@ use App\Http\Controllers\StaticPageController;
 
 Route::get('/', [PostController::class, 'index']);
 
-Auth::routes(['register' => false, 'login' => false]); // disable registration action
+//Auth::routes(['register' => false, 'login' => false]); // disable registration action
 
 Route::get('/backend/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
