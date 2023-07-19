@@ -12,33 +12,31 @@
                     </div>
                     @foreach ($posts as $post)
                     <article>
-                        <header>
                             <h2>
                                 <a href="{{ $post->url() }}" class="fw-bold text-decoration-none text-black fs-3">{{$post->title}}</a>
                             </h2>
                             <div class="d-flex justify-content-between single-post">
-                                <p class="sub-title">published at 
+                                <p class="sub-title">published at
                                     <span>
                                         @php
                                             $post_date = $post->createdAt();
                                             $timestamp = strtotime($post_date);
                                             $formattedDate = date('d-m-Y', $timestamp);
                                         @endphp
-                                    {{ 
+                                    {{
                                        $formattedDate
                                     }}
-                                    </span> 
+                                    </span>
                                 </p>
                                 <p><i class="fas fa-clock"></i>  {{ post_reading_time_estimation($post) }}</p>
-                                
+
                             </div>
                             <div class="entry-text">
-                                {{$post->postExcerpt()}}
+                                {!! $post->postExcerpt() !!}
                             <p class="mt-6">
                                 <a href="{{ $post->url() }}">Read more</a>
                             </p>
                             </div>
-                        </header>
                     </article>
                     @endforeach
                 </div>
