@@ -33,10 +33,10 @@
                             </div>
                             <div class="entry-text">
                                 {!! $post->postExcerpt() !!}
+                            </div>
                             <p class="mt-6">
                                 <a href="{{ $post->url() }}">Read more</a>
                             </p>
-                            </div>
                     </article>
                     @endforeach
                 </div>
