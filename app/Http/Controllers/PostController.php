@@ -10,7 +10,7 @@ class PostController extends Controller
     public function index(): object
     {
         return view('welcome', [
-            'posts' => Post::where('status', 1)->orderByRaw('(created_at) DESC')->simplePaginate(5)
+            'posts' => Post::where('status', 1)->orderByRaw('(created_at) DESC')->paginate(5)
         ]);
     }
 
