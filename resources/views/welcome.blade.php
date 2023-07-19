@@ -39,6 +39,11 @@
                             </p>
                     </article>
                     @endforeach
+
+                           <div class="navigation my-5 d-flex justify-content-center">
+                            {{ $posts->links() }}
+                           </div>
+
                 </div>
             </div>
         </div>
