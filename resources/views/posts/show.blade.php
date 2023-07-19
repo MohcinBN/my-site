@@ -6,7 +6,7 @@
                 {{-- articles --}}
                 <div class="col-md-9 mt-4">
                     <article>
-                        <header>
+
                             <h2>
                                 {{$post->title}}
                             </h2>
@@ -21,7 +21,7 @@
                             <div class="entry-text mb-5">
                                 {!! $post->body !!}
                             </div>
-                        </header>
+
                     </article>
 
                 </div>
