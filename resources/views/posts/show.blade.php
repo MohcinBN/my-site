@@ -15,7 +15,7 @@
 
 
                             </div>
-                            <div class="post-image mt-2 mb-2">
+                            <div class="post-image mt-3 mb-5">
                                 <img src="{{asset('storage/' . $post->image)}}" alt="{{$post->title}}" class="w-100">
                             </div>
                             <div class="entry-text mb-5">
