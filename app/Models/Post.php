@@ -42,4 +42,9 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
