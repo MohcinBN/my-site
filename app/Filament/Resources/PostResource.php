@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
+use App\Models\Tag;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -37,6 +38,11 @@ class PostResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->preserveFilenames()
                     ->maxSize(1024),
+
+                Forms\Components\Select::make('id')
+                    ->label('Tag')
+                    ->options(Tag::all()->pluck('name', 'id'))
+                    ->searchable()
             ]);
     }
 
