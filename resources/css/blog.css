@@ -31,7 +31,10 @@ article .single-post p:last-child {
 }
 
 article span {
-    color: blue;
+    color: #161688;
+    background: #d2d2dd;
+    padding: 4px;
+    border-radius: 2px;
 }
 
 .single-post p {

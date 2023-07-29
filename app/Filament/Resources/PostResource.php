@@ -39,9 +39,14 @@ class PostResource extends Resource
                     ->preserveFilenames()
                     ->maxSize(1024),
 
-                Forms\Components\Select::make('id')
+                /*Forms\Components\Select::make('id')
                     ->label('Tag')
                     ->options(Tag::all()->pluck('name', 'id'))
+                    ->searchable(),*/
+
+                Forms\Components\Select::make('id')
+                    ->multiple()
+                    ->relationship('tags', 'name')
                     ->searchable()
             ]);
     }

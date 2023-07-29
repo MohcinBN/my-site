@@ -31,6 +31,11 @@
                                 <p><i class="fas fa-clock"></i>  {{ post_reading_time_estimation($post) }}</p>
 
                             </div>
+                            <div class="tags">
+                                    @foreach ($post->tags as $tag)
+                                        <span>{{ $tag->name }}</span>
+                                    @endforeach
+                            </div>
                             <div class="entry-text">
                                 {!! $post->postExcerpt() !!}
                             </div>

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tag_post', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->foreignId('post_id')->references('id')->on('posts')->onDelete('cascade');
