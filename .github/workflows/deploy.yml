@@ -1,7 +1,5 @@
 name: Deploy
 
-# Trigger the workflow on push and
-# pull request events on the production branch
 on:
   push:
     branches:
@@ -10,13 +8,27 @@ on:
     branches:
       - main
 
-# Authenticate to the the server via ssh
-# and run our deployment script
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Clear Git Cache
+        run: git fetch --prune
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
+
+      - name: Debug Info
+        run: |
+          echo "Current Branch: $(git rev-parse --abbrev-ref HEAD)"
+          echo "List of Remote Branches: $(git ls-remote origin)"
+          echo "List of Local Branches: $(git branch)"
+          git remote show origin
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
+
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
