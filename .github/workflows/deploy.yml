@@ -17,6 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Debug Info
+        run: |
+          echo "Current Branch: $(git rev-parse --abbrev-ref HEAD)"
+          echo "List of Remote Branches: $(git ls-remote origin)"
+          echo "List of Local Branches: $(git branch)"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
@@ -25,3 +32,4 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           script: "cd /var/www/mysite && ./.scripts/deploy.sh"
+
