@@ -6,7 +6,7 @@
         {{-- articles --}}
         <div class="col-md-9 mt-4">
                <h1>About me </h1>
-               A change with automated deployement!!!!
+               A change with automated deployement
                <p>
                 Muslim, software developer, striving for daily self-improvement in the field of software engineering. <br><br>
 
