@@ -20,7 +20,7 @@ jobs:
           npm install
       - name: Compile assets
         run: |
-          npm run production # or your build command
+          npm run build
       - name: Commit and Push if there are changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
