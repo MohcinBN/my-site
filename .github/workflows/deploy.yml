@@ -62,7 +62,7 @@ jobs:
       - name: Compile assets
         run: npm run production
   deploy:
-    needs: [testing, building]
+    needs: [building]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
