@@ -16,6 +16,15 @@ jobs:
         with:
           ref: main
 
+      # Update changes from the main branch
+      - name: Update local repository
+        run: |
+          git fetch origin main
+          git reset --hard FETCH_HEAD
+          git clean -df
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install Composer dependencies
         run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
 
