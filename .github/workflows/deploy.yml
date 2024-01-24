@@ -1,5 +1,4 @@
-name: Deploy
-
+name: CI/CD workflow
 on:
   push:
     branches:
@@ -7,33 +6,84 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
-  deploy:
+  testing:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: mo070153391&&
+          MYSQL_DATABASE: my-site
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      - name: Copy .env file
+        run: cp .env.example .env
+      - name: Install dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Storage Permission
+        run: chmod -R 777 storage bootstrap/cache
+      - name: Database Setup
+        env:
+          DB_CONNECTION: mysql
+          DB_DATABASE: my-site
+          DB_PORT: 3306
+          DB_USER: admin
+          DB_PASSWORD: mo070153391&&
+        run: php artisan migrate:fresh --seed
+      #- name: Execute tests (Unit and Feature tests) via PHPUnit
+        #env:
+          #DB_CONNECTION: mysql
+          #DB_DATABASE: laravel
+          #DB_PORT: 3306
+          #DB_USER: root
+          #DB_PASSWORD: passw0rd
+        #run: php artisan test
+  building:
+    #needs: testing
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Clear Git Cache
-        run: git fetch --prune
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
-
-      - name: Debug Info
-        run: |
-          echo "Current Branch: $(git rev-parse --abbrev-ref HEAD)"
-          echo "List of Remote Branches: $(git ls-remote origin)"
-          echo "List of Local Branches: $(git branch)"
-          git remote show origin
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
-
-      - name: Deploy to server
-        uses: appleboy/ssh-action@master
+      - uses: actions/checkout@v2
+      - name: Install NPM dependencies
+        run: npm install
+      - name: Compile assets
+        run: npm run production
+  deploy:
+    needs: [testing, building]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/mysite && ./.scripts/deploy.sh"
+          ref: production
+      - name: Reset production branch
+        run: |
+          git fetch origin main:main
+          git rebase main -s ours
+      - name: Compile assets
+        run: |
+          npm install
+          npm run production
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Updated assets" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true
