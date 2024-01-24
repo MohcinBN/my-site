@@ -15,12 +15,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: main
+
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
+
       - name: Compile assets
-        run: |
-          npm run build
+        run: npm run build
+
       - name: Commit and Push if there are changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -30,3 +31,15 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fix permissions
+        run: |
+          ssh username@your-server-address 'sudo chown -R www-data:www-data /var/www/mysite/storage /var/www/mysite/bootstrap/cache'
+          ssh username@your-server-address 'sudo chmod -R 775 /var/www/mysite/storage /var/www/mysite/bootstrap/cache'
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Clear Compiled Views
+        run: ssh username@your-server-address 'cd /var/www/mysite && php artisan view:clear'
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
