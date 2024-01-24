@@ -34,13 +34,11 @@ jobs:
 
       - name: Fix permissions
         run: |
-          ssh -i ${{ secrets.DEPLOY_KEY }} root@31.220.53.17 'sudo chown -R www-data:www-data /var/www/mysite/storage /var/www/mysite/bootstrap/cache'
-          ssh -i ${{ secrets.DEPLOY_KEY }} root@31.220.53.17 'sudo chmod -R 775 /var/www/mysite/storage /var/www/mysite/bootstrap/cache'
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-
-      - name: Clear Compiled Views
-        run: ssh -i ${{ secrets.DEPLOY_KEY }} root@31.220.53.17 'cd /var/www/mysite && php artisan view:clear'
+          echo "${{ secrets.DEPLOY_KEY }}" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -i deploy_key.pem root@31.220.53.17 'sudo chown -R www-data:www-data /var/www/mysite/storage /var/www/mysite/bootstrap/cache'
+          ssh -i deploy_key.pem root@31.220.53.17 'sudo chmod -R 775 /var/www/mysite/storage /var/www/mysite/bootstrap/cache'
+          rm deploy_key.pem
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
