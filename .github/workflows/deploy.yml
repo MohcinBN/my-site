@@ -34,6 +34,17 @@ jobs:
       - name: Compile assets
         run: npm run build
 
+      - name: Remove old assets
+        run: |
+          echo -e "${{ secrets.SERVER_SSH_KEY }}" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -i deploy_key.pem -o StrictHostKeyChecking=no root@31.220.53.17 << 'EOF'
+            cd /var/www/mysite
+            # Assuming your build outputs to a 'dist' directory; adjust as needed
+            rm -rf /var/www/mysite/dist/*
+          EOF
+          rm deploy_key.pem
+
       - name: Commit and Push if there are changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
