@@ -25,8 +25,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install Composer dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+      #- name: Install Composer dependencies
+        #run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
 
       - name: Install dependencies
         run: npm install
@@ -46,3 +46,17 @@ jobs:
 
       - name: Bring the application out of maintenance mode
         run: php artisan up
+
+      - name: SSH into Server and Pull Latest Changes
+        run: |
+          ssh -i ${{ secrets.SERVER_SSH_KEY }} root@31.220.53.17 << 'EOF'
+            cd /var/www/mysite
+            git pull origin main
+            # Add any commands you need to run after pulling changes, like:
+            # composer install (for a PHP project)
+            # npm install or npm run build (for a Node.js project)
+            # php artisan migrate (for a Laravel project, if you need to run migrations)
+            # Any other build or restart commands your application requires
+          EOF
+        env:
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
