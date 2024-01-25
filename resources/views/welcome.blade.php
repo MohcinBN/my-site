@@ -40,7 +40,7 @@
                                 {!! $post->postExcerpt() !!}
                             </div>
                             <p class="mt-6">
-                                <a href="{{ $post->url() }}">Read more</a>
+                                <a href="{{ $post->url() }}" class="read-more">Read more</a>
                             </p>
                     </article>
                     @endforeach

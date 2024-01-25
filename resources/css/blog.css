@@ -20,9 +20,11 @@ header p {
 }
 
 article .single-post p:last-child {
-    background: #2525a2;
+    background: #8b8bbd;
     color: #fff;
-    padding: 1px 5px 1px 5px;
+    padding: 0 5px 0 5px;
+    border-radius: 8px;
+    font-size: 0.7rem;
 }
 
 /* side navigation */
@@ -31,15 +33,33 @@ article .single-post p:last-child {
 }
 
 article span {
-    color: #161688;
-    background: #d2d2dd;
-    padding: 4px;
-    border-radius: 2px;
+    background: #8b8bbd;
+    color: #fff;
+    padding: 0 5px 0 5px;
+    border-radius: 8px;
+    font-size: 0.7rem;
 }
 
 .single-post p {
     font-size: 0.9rem;
 }
 .navigation ul {
+    .page-item:first-child .page-link {
+        background: #8b8bbd;
+        color: #fff;
+    }
+    .page-item:not(:first-child) .page-link {
+        background: #8b8bbd;
+        color: #fff;
+      }
+}
 
+.read-more {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+article {
+    margin: 2rem 0 2rem;
 }
