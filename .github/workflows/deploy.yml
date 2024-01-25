@@ -44,8 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Bring the application out of maintenance mode
-        run: php artisan up
+      #- name: Bring the application out of maintenance mode
+        #run: php artisan up
 
       - name: SSH into Server and Pull Latest Changes
         run: |
