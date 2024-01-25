@@ -36,6 +36,8 @@
 
                 <p> I firmly believe in taking small and continuous steps in my life's journey..  <br><br>
 
+                    -----
+
                 ‘A’isha reported God’s Messenger as saying, “The acts most pleasing to God are those which are done most continuously, even if they amount to little.” (Bukhari and Muslim.)  <br><br>
                </p>
         </div>
