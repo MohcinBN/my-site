@@ -51,7 +51,7 @@ jobs:
         run: |
           echo "${{ secrets.SERVER_SSH_KEY }}" > deploy_key.pem
           chmod 600 deploy_key.pem
-          ssh -i deploy_key.pem root@31.220.53.17 << 'EOF'
+          ssh -i deploy_key.pem -o StrictHostKeyChecking=no root@31.220.53.17 << 'EOF'
             git pull origin main
           EOF
           rm deploy_key.pem
