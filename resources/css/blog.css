@@ -24,7 +24,7 @@ article .single-post p:last-child {
     color: #fff;
     padding: 0 5px 0 5px;
     border-radius: 8px;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 /* side navigation */
@@ -35,9 +35,9 @@ article .single-post p:last-child {
 article span {
     background: #8b8bbd;
     color: #fff;
-    padding: 0 5px 0 5px;
+    padding: 3px 7px;
     border-radius: 8px;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .single-post p {
