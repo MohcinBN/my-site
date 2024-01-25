@@ -57,7 +57,7 @@ jobs:
 
           # Use the private key to SSH into your server. The '-o StrictHostKeyChecking=no' is optional and should be used carefully.
           # Added '-tt' to force pseudo-terminal allocation, and '-vvv' for verbose output to help with debugging.
-          ssh -tt -i deploy_key.pem -o StrictHostKeyChecking=no -vvv root@31.220.53.17 << 'EOF'
+          ssh -tt -i deploy_key.pem -o StrictHostKeyChecking=no -vvv root@31.220.53.17 << 'EOF' || true
             # Navigate to the project directory
             cd /var/www/mysite
 
