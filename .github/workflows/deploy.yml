@@ -47,16 +47,14 @@ jobs:
       #- name: Bring the application out of maintenance mode
         #run: php artisan up
 
-      - name: SSH into Server and Pull Latest Changes
+      - name: SSH into Server and Execute Commands
         run: |
-          ssh -i ${{ secrets.SERVER_SSH_KEY }} root@31.220.53.17 << 'EOF'
-            cd /var/www/mysite
+          echo "${{ secrets.SERVER_SSH_KEY }}" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -i deploy_key.pem root@31.220.53.17 << 'EOF'
             git pull origin main
-            # Add any commands you need to run after pulling changes, like:
-            # composer install (for a PHP project)
-            # npm install or npm run build (for a Node.js project)
-            # php artisan migrate (for a Laravel project, if you need to run migrations)
-            # Any other build or restart commands your application requires
           EOF
+          rm deploy_key.pem
         env:
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+
