@@ -49,11 +49,24 @@ jobs:
 
       - name: SSH into Server and Execute Commands
         run: |
-          echo "${{ secrets.SERVER_SSH_KEY }}" > deploy_key.pem
+          # Use 'echo -e' to ensure that newlines are correctly interpreted while writing the key to a file.
+          echo -e "${{ secrets.SERVER_SSH_KEY }}" > deploy_key.pem
+
+          # Set correct permissions for the private key file.
           chmod 600 deploy_key.pem
-          ssh -i deploy_key.pem -o StrictHostKeyChecking=no root@31.220.53.17 << 'EOF'
+
+          # Use the private key to SSH into your server. The '-o StrictHostKeyChecking=no' is optional and should be used carefully.
+          # Added '-tt' to force pseudo-terminal allocation, and '-vvv' for verbose output to help with debugging.
+          ssh -tt -i deploy_key.pem -o StrictHostKeyChecking=no -vvv root@31.220.53.17 << 'EOF'
+            # Navigate to the project directory
+            cd /var/www/mysite
+
+            # Pull the latest changes from the main branch
             git pull origin main
+
           EOF
+
+          # Remove the private key file after use for security.
           rm deploy_key.pem
         env:
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
