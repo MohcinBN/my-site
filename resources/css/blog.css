@@ -44,10 +44,6 @@ article span {
     font-size: 0.9rem;
 }
 .navigation ul {
-    .page-item:first-child .page-link {
-        background: #8b8bbd;
-        color: #fff;
-    }
     .page-item:not(:first-child) .page-link {
         background: #8b8bbd;
         color: #fff;
