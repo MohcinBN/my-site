@@ -15,7 +15,7 @@ class Post extends Model
         'title',
         'body',
         'status',
-        'image'
+        //'image'
     ];
 
     // url generation

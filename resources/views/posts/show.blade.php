@@ -15,9 +15,11 @@
 
 
                             </div>
-                            <div class="post-image mt-3 mb-5">
-                                <img src="{{asset('storage/' . $post->image)}}" alt="{{$post->title}}" class="w-100">
-                            </div>
+                            @if($post->image)
+                                <div class="post-image mt-3 mb-5">
+                                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-100">
+                                </div>
+                            @endif
                             <div class="entry-text mb-5">
                                 {!! $post->body !!}
                             </div>
