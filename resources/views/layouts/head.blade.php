@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Explore insights on software development, coding best practices, and personal thoughts from Mohcin Bounouara.">
 
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-        <title>Mohcin Bounouara</title>
+        <title>Software Development Insights & Own Thoughts | Mohcin Bounouara</title>
 
 
 <!-- Google tag (gtag.js) -->
